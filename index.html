@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daisy Pollenne - Academic Website</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .name-title h1 {
+            margin: 0;
+            font-size: 2.2em;
+            color: #2c3e50;
+        }
+        
+        .name-title h2 {
+            margin: 5px 0 0 0;
+            font-size: 1.2em;
+            font-weight: normal;
+            color: #7f8c8d;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #e0f7fa;
+        }
+        
+        nav a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Bio tab modifications */
+        .bio-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            align-items: center; /* Vertically center the photo with the text */
+        }
+        
+        .bio-photo {
+            flex: 0 0 50%; /* Takes exactly half the width */
+            max-width: 50%;
+        }
+        
+        .bio-photo img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .bio-text {
+            flex: 1;
+        }
+        
+        /* Added specific styling for about paragraphs */
+        .about-section p {
+            margin-bottom: 20px;
+        }
+        
+        .about-section p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .research-interests {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .research-interests ul {
+            padding-left: 20px;
+        }
+        
+        /* CV tab modifications */
+        .cv-link {
+            text-align: center;
+            margin: 20px 0 30px;
+        }
+        
+        .cv-section {
+            margin-bottom: 60px; /* Increased space between sections (was 40px) */
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cv-section:last-child {
+            border-bottom: none;
+        }
+        
+        .cv-section h3 {
+            color: #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .cv-item {
+            margin-bottom: 20px;
+        }
+        
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .cv-item-details ul, .cv-section ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        
+        .cv-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        /* Research tab modifications */
+        .research-section {
+            margin-bottom: 40px; /* Increased space between sections */
+        }
+        
+        .scholar-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .publication-item, .project-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        
+        .email-icon {
+            margin-left: 10px;
+            color: #3498db;
+            text-decoration: none;
+            position: relative;
+            top: 1px;
+        }
+        
+        .email-icon:hover {
+            color: #2980b9;
+        }
+        
+        /* Contact tab new styling */
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-icon {
+            font-size: 2.5em;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .contact-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .contact-detail {
+            margin-bottom: 0;
+        }
+        
+        .contact-email {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-card a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #3498db;
+            color: white !important; /* Force white text color */
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: normal !important; /* Override bold */
+        }
+        
+        .email-btn:hover {
+            background-color: #2980b9;
+            text-decoration: none;
+            color: white !important; /* Keep text white on hover */
+        }
+        
+        .email-btn i {
+            margin-right: 8px;
+            color: white; /* Make sure icon is also white */
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .bio-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .bio-photo {
+                max-width: 100%;
+                flex: 1 0 auto;
+                text-align: center;
+            }
+            
+            .cv-item-header {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="name-title">
+            <h1>Daisy Pollenne</h1>
+            <h2>Well-being Researcher</h2>
+        </div>
+        <nav>
+            <a href="#" class="active" onclick="showTab('bio')">Bio</a>
+            <a href="#" onclick="showTab('cv')">Curriculum Vitae</a>
+            <a href="#" onclick="showTab('research')">Research</a>
+            <a href="#" onclick="showTab('contact')">Contact</a>
+        </nav>
+    </header>
+    
+    <div id="bio" class="tab-content active">
+        <div class="bio-container">
+            <div class="bio-photo">
+                <img src="daisy_pic.jpg" alt="Daisy Pollenne">
+            </div>
+            <div class="bio-text">
+                <h2>Daisy Pollenne (She/her)</h2>
+                
+                <div class="research-interests">
+                    <h4>Research interests</h4>
+                    <ul>
+                        <li>Workplace well-being</li><li>Performance and productivity</li><li>Inequality and inclusion</li>
+                    </ul>
+                </div>
+                
+                <div class="about-section">
+                    <h4>About:</h4>
+                    <p>I am a Postdoctoral Researcher at the Stone Centre for the Study of Wealth Inequality at INSEAD. My research examines the relationship between employment and well-being, focusing on how organisational structures and cultural norms shape individuals' experiences in professional environments.</p><p>I hold a Ph.D. in Social Anthropology from the University of Oxford, where my research on refugee well-being in the UK labour market examined tensions between immediate employment needs and refugees' long-term integration. This work has inspired a shift to my current focus, on well-being in organisational contexts.</p><p>At INSEAD, I am currently developing several research streams. The first explores the potential trade-offs for organisations in promoting individual and collective purpose, and how such tensions affect individuals' well-being and performance. The second examines well-being implications of changes in women's employment careers during the transition to motherhood.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="cv" class="tab-content">
+        <p class="cv-link"><a href="daisy_pollenne_cv_25.pdf" target="_blank">Link to full CV pdf</a></p>
+        
+        <div class="cv-section">
+            <h3>ACADEMIC EMPLOYMENT</h3>
+            
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span>INSEAD, September 2024-Present</span>
+                    <span>Postdoctoral Researcher & Teaching Assistant</span>
+                </div>
+                <div class="cv-item-details">
+                    <ul>
+                        <li>Research on workplace well-being and organisational performance</li><li>Teaching Assistant for Power and Politics</li><li>Teaching Assistant for Wealth and Income Inequality and the Future of Business</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span>University of Oxford, September 2023-December 2023</span>
+                    <span>Teaching Assistant</span>
+                </div>
+                <div class="cv-item-details">
+                    <ul>
+                        <li>Teaching Assistant for Economics of Migration</li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+        
+        <div class="cv-section">
+            <h3>EDUCATION</h3>
+            
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span>University of Oxford, October 2020-October 2024</span>
+                    <span>Ph.D. in Social Anthropology</span>
+                </div>
+                <div class="cv-item-details">
+                    <ul>
+                        <li>Thesis on Subjective well-being and employment of migrants in the United Kingdom</li><li>Supervisor: Professor Carlos-Vargas Silva</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span>Sciences Po, Paris, September 2017-August 2019</span>
+                    <span>Master's in Social and Political Sciences</span>
+                </div>
+                <div class="cv-item-details">
+                    <ul>
+                        <li>Specialised in Political Sciences, Social Policy & Social Innovation</li><li>Graduated Cum laude, Top 10% of students</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="cv-item">
+                <div class="cv-item-header">
+                    <span>Sciences Po, Paris, September 2014-August 2017</span>
+                    <span>Bachelor's in Social and Political Sciences</span>
+                </div>
+                <div class="cv-item-details">
+                    <ul>
+                        <li>Specialised in Social and Political Sciences</li><li>Graduated Cum laude, Top 10% of students</li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+        
+        <div class="cv-section">
+            <h3>REVIEWER ACTIVITIES</h3>
+            <ul>
+                <li>Academy of Management (2025 Annual Conference)</li><li>European Societies (2025 - Onwards)</li><li>Journal of Business Venturing (2024 - Onwards)</li><li>Journal of Management Studies (2024 - Onwards)</li>
+            </ul>
+        </div>
+        
+        <div class="cv-section">
+            <h3>CONFERENCE PRESENTATIONS</h3>
+            <ul>
+                <li>Academy of Management Annual Conference, Symposium on Toxic cultures, Copenhagen, June 2025</li><li>Mothers’ Return to Work After Childbirth, University of Ottawa, May 2025</li><li>Gender Issues in Education and the Labor Market, University of Zurich, June 2025</li><li>Connections and Disconnections in the Workplace, Wharton May 2024 Conference</li><li>International Society for Quality-of-Life Studies (ISQOLS), 2024 Annual Conference - Special Session on Happiness Economics</li><li>Sorbonne-Alliance 2024 Conference - Well-Being, Public Policies and Sustainable Human Development</li><li>International Society for Quality-of-Life Studies (ISQOLS) 2023 Conference - Annual Conference Towards a People-First Economy</li><li>Bank of Canada 2022 Conference - Diversity, Equity and Inclusion in Economics, Finance and Central Banking</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="research" class="tab-content">
+        <!-- Google Scholar link centered and above Publications title -->
+        <p class="scholar-link"><a href="https://scholar.google.com/citations?user=7HZWZ2kAAAAJ&hl=en" target="_blank">Google Scholar profile</a></p>
+        
+        <div class="research-section">
+            <h3>Publications</h3>
+            
+            <div class="publication-item">
+                <p>
+                    Pollenne, D., 2024. Understandings of happiness and life satisfaction among refugees in the UK. Journal of Refugee Studies, 37(1), pp.51-71.
+                    <a href="mailto:daisy.pollenne@insead.edu?subject=Request for paper: Pollenne, D., 2024. Understandings of happiness and life satisfaction among refugees in the UK. Journal of Refugee Studies, 37(1), pp.51-71." class="email-icon" title="Email me for full paper">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </p>
+            </div>
+        
+            <div class="publication-item">
+                <p>
+                    Pollenne, D. and Vargas-Silva, C., 2024. Differences in migrants' reason for migration and subjective well-being: not so different after all. Comparative Migration Studies, 12(1), p.11.
+                    <a href="mailto:daisy.pollenne@insead.edu?subject=Request for paper: Pollenne, D. and Vargas-Silva, C., 2024. Differences in migrants' reason for migration and subjective well-being: not so different after all. Comparative Migration Studies, 12(1), p.11." class="email-icon" title="Email me for full paper">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </p>
+            </div>
+        
+        </div>
+        
+        <div class="research-section">
+            <h3>Manuscripts under review</h3>
+            
+            <div class="publication-item">
+                <p>Pollenne, D. and Vargas-Silva, Working your way to remain: Employment and Well-being of migrants in the UK (Submitted to the International Migration journal, January 2025)</p>
+            </div>
+        
+            <div class="publication-item">
+                <p>Pollenne, D., Making sense of safety: Safety and Well-being of refugees in the UK (Submitted to Refugee Survey Quarterly, February 2025)</p>
+            </div>
+        
+        </div>
+        
+        <div class="research-section">
+            <h3>Working papers</h3>
+            
+            <div class="publication-item">
+                <p>
+                    Koebel K., Pollenne, D. Daddy Issues: The Differential Impact of Childbirth on the Well-Being of Mothers and Fathers in the UK
+                    <a href="mailto:daisy.pollenne@insead.edu?subject=Request for working draft: Koebel K., Pollenne, D. Daddy Issues: The Differential Impact of Childbirth on the Well-Being of Mothers and Fathers in the UK" class="email-icon" title="Email me for working draft">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </p>
+            </div>
+        
+            <div class="publication-item">
+                <p>
+                    Guadalupe M., Pollenne, D., Snellman, K., Norms at Work: Masculinity, performance and well-being in academia
+                    <a href="mailto:daisy.pollenne@insead.edu?subject=Request for working draft: Guadalupe M., Pollenne, D., Snellman, K., Norms at Work: Masculinity, performance and well-being in academia" class="email-icon" title="Email me for working draft">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </p>
+            </div>
+        
+        </div>
+        
+        <div class="research-section">
+            <h3>Research projects</h3>
+            <div class="project-item"><p>Pollenne D., Climate for well-being and collaboration in academia</p></div><div class="project-item"><p>Miron-Spektor E., Pollenne D., Snellman K., Antecedents of psychological safety, performance and well-being in teams</p></div><div class="project-item"><p>Abi-Esber N., Bresman H., Pollenne D., Team diversity, psychological safety and performance</p></div>
+        </div>
+    </div>
+    
+    <div id="contact" class="tab-content">
+        <h2>Contact Information</h2>
+        <p>Feel free to reach out for research collaborations, speaking engagements, or to request papers.</p>
+        
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-title">Email</div>
+                <p class="contact-detail">daisy.pollenne@insead.edu</p>
+                <a href="mailto:daisy.pollenne@insead.edu" class="email-btn">
+                    <i class="fas fa-paper-plane"></i> Email me
+                </a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <div class="contact-title">LinkedIn</div>
+                <p class="contact-detail">Connect with me on LinkedIn</p>
+                <a href="https://www.linkedin.com/in/daisy-pollenne/" target="_blank" class="email-btn">
+                    <i class="fas fa-external-link-alt"></i> View Profile
+                </a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-title">Work Address</div>
+                <p class="contact-detail">INSEAD, Boulevard de Constance, 77300 Fontainebleau, France</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        &copy; Daisy Pollenne 2025
+    </footer>
+    
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+    
