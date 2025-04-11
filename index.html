@@ -108,6 +108,18 @@
             margin-bottom: 0;
         }
         
+        .about-section a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .about-section a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
         .research-interests {
             margin-top: 20px;
             margin-bottom: 30px;
@@ -188,6 +200,112 @@
         
         .email-icon:hover {
             color: #2980b9;
+        }
+        
+        /* New abstract and illustration buttons */
+        .content-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .content-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        
+        .content-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .abstract-btn {
+            background-color: #3498db;
+        }
+        
+        .illustration-btn {
+            background-color: #27ae60;
+        }
+        
+        .illustration-btn:hover {
+            background-color: #219653;
+        }
+        
+        .content-section {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-size: 0.95em;
+            border-left: 4px solid #3498db;
+        }
+        
+        .abstract-content {
+            border-left-color: #3498db;
+        }
+        
+        /* Modal for illustrations - click-based approach */
+        #illustration-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 999;
+            cursor: pointer;
+        }
+        
+        #illustration-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            max-width: 98vw; /* Increased from 80vw to 90vw */
+            max-height: 98vh; /* Increased from 80vh to 90vh */
+        }
+        
+        #modal-image {
+            max-width: 100%;
+            max-height: calc(98vh - 20px); /* Increased to match new modal size */
+            object-fit: contain;
+            display: block;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #333;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
         
         /* Contact tab new styling */
@@ -304,6 +422,11 @@
             .contact-card {
                 width: 100%;
             }
+            
+            #modal-image {
+                max-width: 95vw; /* Increased for mobile */
+                max-height: 80vh;
+            }
         }
     </style>
 </head>
@@ -324,7 +447,7 @@
     <div id="bio" class="tab-content active">
         <div class="bio-container">
             <div class="bio-photo">
-                <img src="daisy_pic.JPG" alt="Daisy Pollenne">
+                <img src="daisy_pic.jpg" alt="Daisy Pollenne">
             </div>
             <div class="bio-text">
                 <h2>Daisy Pollenne (She/her)</h2>
@@ -338,7 +461,7 @@
                 
                 <div class="about-section">
                     <h4>About:</h4>
-                    <p>I am a Postdoctoral Researcher at the Stone Centre for the Study of Wealth Inequality at INSEAD. My research examines the relationship between employment and well-being, focusing on how organisational structures and cultural norms shape individuals' experiences in professional environments.</p><p>I hold a Ph.D. in Social Anthropology from the University of Oxford, where my research on refugee well-being in the UK labour market examined tensions between immediate employment needs and refugees' long-term integration. This work has inspired a shift to my current focus, on well-being in organisational contexts.</p><p>At INSEAD, I am currently developing several research streams. The first explores the potential trade-offs for organisations in promoting individual and collective purpose, and how such tensions affect individuals' well-being and performance. The second examines well-being implications of changes in women's employment careers during the transition to motherhood.</p>
+                    <p>I am a Postdoctoral Researcher at INSEAD, jointly affiliated with the <a href='https://www.insead.edu/stone-centre-study-wealth-inequality' target='_blank'>Stone Centre for the Study of Wealth Inequality</a> and the <a href='https://www.insead.edu/gender-initiative' target='_blank'>INSEAD Gender Initiative</a>. My research examines the relationship between employment and well-being, focusing on how organisational structures and cultural norms shape individuals' experiences in professional environments.</p><p>I hold a Ph.D. in Social Anthropology from the University of Oxford, where my research on refugee well-being in the UK labour market examined tensions between immediate employment needs and refugees' long-term integration. This work has inspired a shift to my current research focus, on well-being in organisational contexts.</p><p>At INSEAD, I am currently developing several research streams. The first explores the potential trade-offs for organisations in promoting individual and collective purpose, and how such tensions affect individuals' well-being and performance. This research is in collaboration with Professors <a href='https://www.insead.edu/faculty/maria-guadalupe' target='_blank'>Maria Guadalupe</a> and <a href='https://www.insead.edu/faculty/kaisa-snellman' target='_blank'>Kaisa Snellman</a>. The second examines well-being implications of changes in women's employment careers during the transition to motherhood, a project I work on with Assistant Professor <a href='https://kourtneykoebel.ca/' target='_blank'>Kourtney Koebel</a>.</p>
                 </div>
             </div>
         </div>
@@ -427,7 +550,7 @@
         <div class="cv-section">
             <h3>CONFERENCE PRESENTATIONS</h3>
             <ul>
-                <li>Academy of Management Annual Conference, Symposium on Toxic cultures, Copenhagen, June 2025</li><li>Mothers’ Return to Work After Childbirth, University of Ottawa, May 2025</li><li>Gender Issues in Education and the Labor Market, University of Zurich, June 2025</li><li>Connections and Disconnections in the Workplace, Wharton May 2024 Conference</li><li>International Society for Quality-of-Life Studies (ISQOLS), 2024 Annual Conference - Special Session on Happiness Economics</li><li>Sorbonne-Alliance 2024 Conference - Well-Being, Public Policies and Sustainable Human Development</li><li>International Society for Quality-of-Life Studies (ISQOLS) 2023 Conference - Annual Conference Towards a People-First Economy</li><li>Bank of Canada 2022 Conference - Diversity, Equity and Inclusion in Economics, Finance and Central Banking</li>
+                <li>Academy of Management Annual Conference, Symposium on Toxic cultures, Copenhagen, June 2025</li><li>Mothers' Return to Work After Childbirth, University of Ottawa, May 2025</li><li>Gender Issues in Education and the Labor Market, University of Zurich, June 2025</li><li>Connections and Disconnections in the Workplace, Wharton May 2024 Conference</li><li>International Society for Quality-of-Life Studies (ISQOLS), 2024 Annual Conference - Special Session on Happiness Economics</li><li>Sorbonne-Alliance 2024 Conference - Well-Being, Public Policies and Sustainable Human Development</li><li>International Society for Quality-of-Life Studies (ISQOLS) 2023 Conference - Annual Conference Towards a People-First Economy</li><li>Bank of Canada 2022 Conference - Diversity, Equity and Inclusion in Economics, Finance and Central Banking</li>
             </ul>
         </div>
     </div>
@@ -446,6 +569,11 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                 </p>
+                <div class="content-buttons">
+                    <button class="content-btn abstract-btn" onclick="toggleContent('pub-abstract-0')">Abstract</button>
+                    
+                </div>
+                <div id="pub-abstract-0" class="content-section abstract-content" style="display:none;">Both qualitative and quantitative research draw increasingly on measures of life satisfaction and happiness to evaluate how refugees are faring in countries where asylum is obtained. However, existing evidence is limited, in that these two subjective well-being (SWB) measures are included in research as either interchangeable or distinct components of SWB. After conducting in-depth interviews with refugees based in the UK, this article presents three important contributions. First, life satisfaction is considered by refugees as a global assessment of key domains in their lives. Second, refugees define happiness not only as an emotion but also as a personal disposition towards experiencing emotions positively. Third, there is a complex relational conditionality between these two components of SWB. While individual socio-demographics and experiences, including those of seeking asylum, bring nuances to the findings, these have significant implications for measuring refugees' SWB in the UK and in post-displacement contexts more broadly.</div>
             </div>
         
             <div class="publication-item">
@@ -455,6 +583,11 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                 </p>
+                <div class="content-buttons">
+                    <button class="content-btn abstract-btn" onclick="toggleContent('pub-abstract-1')">Abstract</button>
+                    <button class="content-btn illustration-btn" onclick="showIllustration('CMS_illust.png')">Illustration</button>
+                </div>
+                <div id="pub-abstract-1" class="content-section abstract-content" style="display:none;">This article uses 2012--2021 UK survey data to explore differences in subjective well-being (i.e. happiness, anxiety, life satisfaction, and having a worthwhile life) between those born in the UK and foreign-born residents who migrated for different reasons to the country (i.e. employment, study, family reunion, and asylum). Previous literature looking at objective indicators such as employment rates and health suggests that migrants' reasons for migration relate to major differences across groups in these types of well-being indicators. In contrast, our analysis suggests that differences in subjective well-being with the UK-born are relatively similar across those who migrated for different reasons to the country. Moreover, across reasons for migration, there is a clear pattern of convergence to the subjective well-being levels of the UK-born as length of residence in the UK increases. This differs from studies looking at objective well-being indicators, in which some groups (e.g. those who migrated for family or asylum reasons) take longer to converge to the levels of those born in the country.</div>
             </div>
         
         </div>
@@ -464,10 +597,20 @@
             
             <div class="publication-item">
                 <p>Pollenne, D. and Vargas-Silva, Working your way to remain: Employment and Well-being of migrants in the UK (Submitted to the International Migration journal, January 2025)</p>
+                <div class="content-buttons">
+                    <button class="content-btn abstract-btn" onclick="toggleContent('ms-abstract-0')">Abstract</button>
+                    
+                </div>
+                <div id="ms-abstract-0" class="content-section abstract-content" style="display:none;">This article explores subjective well-being (SWB) implications of employment for migrants, based on their initial reason for migration (i.e., work, study, family and asylum reasons). While there is a literature on the impact of employment on migrants' SWB, the role of reason for migration has largely been ignored. Using data from the Annual Population Survey in the UK between 2012 and 2022, the analysis provides several key insights. First, while employment contributes positively to the SWB of work, study and asylum migrants, this is not true for family migrants. Second, study migrants are the only group for whom positive SWB implications of employment increase with years of residence, meaning the link between employment and SWB becomes stronger over time. Characteristics of immigration and employment policies in the UK, such as the link between migrants' employment status and residence rights, provide a key framework to interpret these findings.</div>
             </div>
         
             <div class="publication-item">
                 <p>Pollenne, D., Making sense of safety: Safety and Well-being of refugees in the UK (Submitted to Refugee Survey Quarterly, February 2025)</p>
+                <div class="content-buttons">
+                    <button class="content-btn abstract-btn" onclick="toggleContent('ms-abstract-1')">Abstract</button>
+                    
+                </div>
+                <div id="ms-abstract-1" class="content-section abstract-content" style="display:none;">References to safety feature at the heart of research on refugees' well-being and livelihoods in destination countries. However, these tend to restrict safety to the absence of important threats, such as threats to a person's physical integrity. Furthermore, many of these threats are considered resolved once the person seeking refuge is in a 'safe' country. Through semi-structured interviews conducted with refugees in the United Kingdom (UK), I identify a distinct concept of safeness, which refers to refugees' own subjective sense of safety. Drawing from a broader literature on subjective well-being, these interviews help define safeness as a positive and continuous feeling, characterised by a sense of peace with oneself in both present and future temporalities. Importantly, safeness is not entirely relatable to indicators of refugees' current safety conditions. Alongside a conceptual contribution, this notion of safeness has key implications for policymaking in the UK and elsewhere, where assumptions are often made as to what defines safety, and as such how to ensure refugees' safety.</div>
             </div>
         
         </div>
@@ -482,6 +625,11 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                 </p>
+                <div class="content-buttons">
+                    <button class="content-btn abstract-btn" onclick="toggleContent('wp-abstract-0')">Abstract</button>
+                    <button class="content-btn illustration-btn" onclick="showIllustration('unhappy.png')">Illustration</button>
+                </div>
+                <div id="wp-abstract-0" class="content-section abstract-content" style="display:none;">Numerous studies in high-income countries have documented the existence of a "motherhood penalty," where the birth of a first child is associated with significant declines in maternal employment relative to fathers. A separate stream of research also provides evidence that women's mental health decreases with the transition to parenthood, although this is typically inferred through doctor visits and medical prescriptions. In this study, we investigate whether the birth of a first child results in a "double penalty" for mothers in terms of subjective, self-reported measures of well-being. Using data from the United Kingdom's longitudinal household survey covering the period 1991 to 2024, our paper begins by replicating the motherhood penalty in employment and earnings. We then perform an event study analysis to examine the impact of first childbirth on mothers' and fathers' subjective well-being. Contrary to the literature on labour market outcomes and objective health measures, our results suggest that, across various measures of well-being, men suffer relatively more after the birth of their first child than women. For instance, six years post-birth, there remains a statistically significant 10 percentage point gap in depression for fathers relative to mothers. We perform several heterogeneity analyses to better understand why men experience particularly large declines in well-being after becoming fathers.</div>
             </div>
         
             <div class="publication-item">
@@ -491,6 +639,11 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                 </p>
+                <div class="content-buttons">
+                    <button class="content-btn abstract-btn" onclick="toggleContent('wp-abstract-1')">Abstract</button>
+                    <button class="content-btn illustration-btn" onclick="showIllustration('gender_comparison_quantile_regression_plot.png')">Illustration</button>
+                </div>
+                <div id="wp-abstract-1" class="content-section abstract-content" style="display:none;">Workplaces across many industries are characterized by stereotypically "masculine" norms: i.e. highly competitive and individualistic norms, often portrayed as necessary to increase performance. Using rich survey data from faculty and staff in business schools, we develop a novel way to measure masculinity norms and show that they are negatively correlated with employee wellbeing. We then examine why they persist in spite of their negative consequences and find this lower well-being is not compensated by higher performance; nor is it the case that they benefit men over women; nor do they promote "star" performers.</div>
             </div>
         
         </div>
@@ -538,6 +691,13 @@
         </div>
     </div>
     
+    <!-- Modal for illustrations -->
+    <div id="illustration-overlay"></div>
+    <div id="illustration-modal">
+        <button class="close-modal" onclick="hideIllustration()">&times;</button>
+        <img id="modal-image" alt="Illustration">
+    </div>
+    
     <footer>
         &copy; Daisy Pollenne 2025
     </footer>
@@ -558,6 +718,69 @@
             });
             event.target.classList.add('active');
         }
+        
+        function toggleContent(contentId) {
+            const content = document.getElementById(contentId);
+            if (content.style.display === 'none') {
+                // Hide all other open content sections first
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                // Show the clicked content
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+        
+        // Function to show the illustration
+        function showIllustration(imageSrc) {
+            const modal = document.getElementById('illustration-modal');
+            const overlay = document.getElementById('illustration-overlay');
+            const modalImage = document.getElementById('modal-image');
+            
+            // Set the image source
+            modalImage.src = imageSrc;
+            
+            // Show the modal and overlay
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            
+            // Force the image to be larger - add these new lines
+            modalImage.style.width = '80vw';  // Set width to 95% of viewport width
+            modalImage.style.height = 'auto'; // Maintain aspect ratio
+            modal.style.padding = '20px';     // Minimal padding
+            modal.style.width = '80vw';       // Almost full viewport width
+            modal.style.height = 'auto';      // Let height adjust to content
+        }
+        
+        // Function to hide the illustration
+        function hideIllustration() {
+            const modal = document.getElementById('illustration-modal');
+            const overlay = document.getElementById('illustration-overlay');
+            
+            // Hide the modal and overlay
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('illustration-overlay');
+            
+            // Close modal when clicking on the overlay
+            overlay.addEventListener('click', function() {
+                hideIllustration();
+            });
+            
+            // Close with escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && document.getElementById('illustration-modal').style.display === 'block') {
+                    hideIllustration();
+                }
+            });
+        });
     </script>
 </body>
 </html>
