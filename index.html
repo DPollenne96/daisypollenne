@@ -466,11 +466,17 @@
             
             .contact-container {
                 flex-direction: column;
+                padding: 0;
+                margin: 20px 0;
             }
             
             .contact-card {
                 width: 100%;
-                padding: 30px 15px;
+                min-width: 0;
+                max-width: 100%;
+                margin: 0 0 15px 0;
+                padding: 20px 15px;
+                box-sizing: border-box;
             }
             
             /* Larger touch targets */
@@ -531,7 +537,7 @@
     <div id="bio" class="tab-content active">
         <div class="bio-container">
             <div class="bio-photo">
-                <img src="daisy_pic.JPG" alt="Daisy Pollenne">
+                <img src="daisy_pic.jpg" alt="Daisy Pollenne">
             </div>
             <div class="bio-text">
                 <h2>Daisy Pollenne (She/her)</h2>
