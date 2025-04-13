@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Daisy Pollenne - Academic Website</title>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -25,6 +28,7 @@
             padding: 20px 0;
             border-bottom: 1px solid #ddd;
             margin-bottom: 30px;
+            position: relative;
         }
         
         .name-title h1 {
@@ -38,6 +42,15 @@
             font-size: 1.2em;
             font-weight: normal;
             color: #7f8c8d;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #3498db;
+            cursor: pointer;
         }
         
         nav {
@@ -274,13 +287,13 @@
             background-color: white;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            max-width: 98vw; /* Increased from 80vw to 90vw */
-            max-height: 98vh; /* Increased from 80vh to 90vh */
+            max-width: 98vw;
+            max-height: 98vh;
         }
         
         #modal-image {
             max-width: 100%;
-            max-height: calc(98vh - 20px); /* Increased to match new modal size */
+            max-height: calc(98vh - 20px);
             object-fit: contain;
             display: block;
         }
@@ -308,7 +321,7 @@
             background-color: rgba(0, 0, 0, 0.1);
         }
         
-        /* Contact tab new styling */
+        /* Contact tab styling */
         .contact-container {
             display: flex;
             justify-content: space-between;
@@ -399,7 +412,43 @@
             font-size: 0.9em;
         }
         
+        /* Mobile-specific styles */
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                padding: 15px;
+            }
+            
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            nav a {
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                margin: 2px 0;
+            }
+            
             .bio-container {
                 flex-direction: column;
                 align-items: stretch;
@@ -408,7 +457,7 @@
             .bio-photo {
                 max-width: 100%;
                 flex: 1 0 auto;
-                text-align: center;
+                margin-bottom: 20px;
             }
             
             .cv-item-header {
@@ -421,11 +470,43 @@
             
             .contact-card {
                 width: 100%;
+                padding: 30px 15px;
             }
             
-            #modal-image {
-                max-width: 95vw; /* Increased for mobile */
-                max-height: 80vh;
+            /* Larger touch targets */
+            .content-btn {
+                padding: 10px 15px;
+                font-size: 1em;
+                margin-right: 10px;
+            }
+            
+            /* More spacing between items */
+            .publication-item, .project-item {
+                margin-bottom: 25px;
+                padding-bottom: 25px;
+            }
+            
+            /* Increase spacing in CV items */
+            .cv-item {
+                margin-bottom: 30px;
+            }
+            
+            /* Make tab content full width */
+            .tab-content {
+                padding: 15px;
+                border-radius: 6px;
+            }
+            
+            /* Email icons more tappable */
+            .email-icon {
+                padding: 5px;
+                margin-left: 5px;
+            }
+            
+            .email-btn {
+                padding: 12px 20px;
+                width: 100%;
+                margin-top: 15px;
             }
         }
     </style>
@@ -436,7 +517,10 @@
             <h1>Daisy Pollenne</h1>
             <h2>Well-being Researcher</h2>
         </div>
-        <nav>
+        <button class="mobile-menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
             <a href="#" class="active" onclick="showTab('bio')">Bio</a>
             <a href="#" onclick="showTab('cv')">Curriculum Vitae</a>
             <a href="#" onclick="showTab('research')">Research</a>
@@ -447,7 +531,7 @@
     <div id="bio" class="tab-content active">
         <div class="bio-container">
             <div class="bio-photo">
-                <img src="daisy_pic.JPG" alt="Daisy Pollenne">
+                <img src="daisy_pic.jpg" alt="Daisy Pollenne">
             </div>
             <div class="bio-text">
                 <h2>Daisy Pollenne (She/her)</h2>
@@ -703,6 +787,11 @@
     </footer>
     
     <script>
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
+        }
+        
         function showTab(tabId) {
             // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(tab => {
@@ -717,6 +806,12 @@
                 link.classList.remove('active');
             });
             event.target.classList.add('active');
+            
+            // Close the mobile menu when a tab is selected
+            const nav = document.getElementById('main-nav');
+            if (window.innerWidth <= 768) {
+                nav.classList.remove('active');
+            }
         }
         
         function toggleContent(contentId) {
@@ -733,26 +828,58 @@
             }
         }
         
-        // Function to show the illustration
+        // Function to show the illustration with optimized mobile experience
         function showIllustration(imageSrc) {
             const modal = document.getElementById('illustration-modal');
             const overlay = document.getElementById('illustration-overlay');
             const modalImage = document.getElementById('modal-image');
+            const closeBtn = modal.querySelector('.close-modal');
             
             // Set the image source
             modalImage.src = imageSrc;
             
-            // Show the modal and overlay
-            modal.style.display = 'block';
-            overlay.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            // Reset any previous styling
+            modal.removeAttribute('style');
+            modalImage.removeAttribute('style');
             
-            // Force the image to be larger - add these new lines
-            modalImage.style.width = '80vw';  // Set width to 95% of viewport width
-            modalImage.style.height = 'auto'; // Maintain aspect ratio
-            modal.style.padding = '20px';     // Minimal padding
-            modal.style.width = '80vw';       // Almost full viewport width
-            modal.style.height = 'auto';      // Let height adjust to content
+            // Apply fullscreen approach
+            overlay.style.display = 'block';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Full viewport styling
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100vw';
+            modal.style.height = '100vh';
+            modal.style.padding = '0';
+            modal.style.margin = '0';
+            modal.style.maxWidth = 'none';
+            modal.style.maxHeight = 'none';
+            modal.style.transform = 'none';
+            modal.style.background = 'rgba(255,255,255,0.95)';
+            modal.style.justifyContent = 'center';
+            modal.style.alignItems = 'center';
+            modal.style.zIndex = '10000';
+            
+            // Image styling
+            modalImage.style.maxWidth = '95vw';
+            modalImage.style.maxHeight = '90vh';
+            modalImage.style.objectFit = 'contain';
+            
+            // Close button positioning
+            if (closeBtn) {
+                closeBtn.style.position = 'fixed';
+                closeBtn.style.top = '15px';
+                closeBtn.style.right = '15px';
+                closeBtn.style.fontSize = '30px';
+                closeBtn.style.zIndex = '10001';
+                closeBtn.style.background = 'rgba(255,255,255,0.7)';
+                closeBtn.style.borderRadius = '50%';
+                closeBtn.style.width = '40px';
+                closeBtn.style.height = '40px';
+            }
         }
         
         // Function to hide the illustration
@@ -764,10 +891,22 @@
             modal.style.display = 'none';
             overlay.style.display = 'none';
             document.body.style.overflow = 'auto'; // Re-enable scrolling
+            
+            // Reset styles
+            const modalImage = document.getElementById('modal-image');
+            const closeBtn = modal.querySelector('.close-modal');
+            
+            // Reset all inline styles
+            modal.removeAttribute('style');
+            modalImage.removeAttribute('style');
+            if (closeBtn) {
+                closeBtn.removeAttribute('style');
+            }
         }
         
         document.addEventListener('DOMContentLoaded', function() {
             const overlay = document.getElementById('illustration-overlay');
+            const modal = document.getElementById('illustration-modal');
             
             // Close modal when clicking on the overlay
             overlay.addEventListener('click', function() {
@@ -780,6 +919,32 @@
                     hideIllustration();
                 }
             });
+            
+            // Touch event support
+            overlay.addEventListener('touchstart', function() {
+                hideIllustration();
+            });
+            
+            // Prevent default touch behavior on modal image
+            const modalImage = document.getElementById('modal-image');
+            modalImage.addEventListener('touchmove', function(e) {
+                e.preventDefault(); // Prevent scrolling when touching the image
+            }, { passive: false });
+            
+            // Add swipe down to close
+            let touchStartY = 0;
+            let touchEndY = 0;
+            
+            modal.addEventListener('touchstart', function(e) {
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+            
+            modal.addEventListener('touchend', function(e) {
+                touchEndY = e.changedTouches[0].screenY;
+                if (touchEndY - touchStartY > 100) { // Swipe down of more than 100px
+                    hideIllustration();
+                }
+            }, { passive: true });
         });
     </script>
 </body>
