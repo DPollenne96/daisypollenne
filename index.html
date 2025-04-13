@@ -468,6 +468,9 @@
                 flex-direction: column;
                 padding: 0;
                 margin: 20px 0;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
             
             .contact-card {
@@ -501,6 +504,9 @@
             .tab-content {
                 padding: 15px;
                 border-radius: 6px;
+                width: auto; 
+                box-sizing: border-box;
+                overflow: hidden;
             }
             
             /* Email icons more tappable */
@@ -510,9 +516,11 @@
             }
             
             .email-btn {
-                padding: 12px 20px;
-                width: 100%;
-                margin-top: 15px;
+                padding: 10px 15px;
+                width: auto;
+                max-width: 90%;
+                margin: 15px auto 0;
+                display: block;
             }
         }
     </style>
@@ -537,7 +545,7 @@
     <div id="bio" class="tab-content active">
         <div class="bio-container">
             <div class="bio-photo">
-                <img src="daisy_pic.JPG" alt="Daisy Pollenne">
+                <img src="daisy_pic.jpg" alt="Daisy Pollenne">
             </div>
             <div class="bio-text">
                 <h2>Daisy Pollenne (She/her)</h2>
