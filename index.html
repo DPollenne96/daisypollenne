@@ -318,12 +318,21 @@
             border-radius: 8px;
             box-shadow: var(--box-shadow);
             overflow: hidden;
+            position: relative;
         }
         
         .cv-embed iframe {
             width: 100%;
             height: 100%;
             border: none;
+        }
+        
+        .mobile-cv-message {
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+            color: var(--light-text);
+            font-size: 0.9em;
         }
         
         /* Contact Tab */
@@ -497,7 +506,13 @@
             }
             
             .cv-embed {
-                height: 600px;
+                height: 500px;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;  /* Improves scrolling on iOS */
+            }
+            
+            .mobile-cv-message {
+                display: block;
             }
         }
     </style>
@@ -562,7 +577,7 @@
             </div>
             
             <div class="about-text">
-                <p>I am a Postdoctoral Researcher at INSEAD in the Organisational Behaviour area, jointly affiliated with the <a href='https://www.insead.edu/stone-centre-study-wealth-inequality' target='_blank'>Stone Centre for the Study of Wealth Inequality</a> and the <a href='https://www.insead.edu/gender-initiative' target='_blank'>INSEAD Gender Initiative</a>. My research examines the relation between work and well-being, with particular focus on how workplace demands and stressors are unequally distributed across individuals. I also investigate how unique organisational structures and cultural norms shape individuals' experiences in their professional environments.</p><p>My academic foundation comes from the University of Oxford, where I earned my Ph.D. in Social Anthropology. Through field observations and in-depth interviews with refugees in the UK, I explored the meaning of well-being after seeking asylum. Further, I examined how refugees' well-being was affected by their limited access to and concentration in certain occupational fields. This work sparked my current focus on well-being in organisational contexts.</p><p>At INSEAD, I am developing several research streams. Working with <a href='https://www.insead.edu/faculty/maria-guadalupe' target='_blank'>Maria Guadalupe</a> and <a href='https://www.insead.edu/faculty/kaisa-snellman' target='_blank'>Kaisa Snellman</a>, I use novel survey data to explore how hyper-competitive corporate cultures affect both individual well-being and organizational performance. In a separate project with <a href='https://kourtneykoebel.ca/' target='_blank'>Kourtney Koebel</a>, I examine how the transition to motherhood impacts women's employment trajectories and well-being, using large-scale administrative data.</p><p>My research aims to understand and address the complex intersections of work, well-being, and inequality. I welcome opportunities to collaborate on these issues!</p>
+                <p>I am a Postdoctoral Researcher at INSEAD in the Organisational Behaviour area, jointly affiliated with the <a href='https://www.insead.edu/stone-centre-study-wealth-inequality' target='_blank'>Stone Centre for the Study of Wealth Inequality</a> and the <a href='https://www.insead.edu/gender-initiative' target='_blank'>INSEAD Gender Initiative</a>. My research examines the relation between work and well-being, with particular focus on how workplace demands and stressors are unequally distributed across individuals. I also investigate how unique organisational structures and cultural norms shape individuals' experiences in their professional environments.</p><p>My academic foundation comes from the University of Oxford, where I earned my Ph.D. in Social Anthropology. Through field observations and in-depth interviews with refugees in the UK, I explored the meaning of well-being after seeking asylum. Further, I examined how refugees' well-being was affected by their limited access to and concentration in certain occupational fields. This work sparked my current focus on well-being in organisational contexts.</p><p>At INSEAD, I am developing several research streams. Working with <a href='https://www.insead.edu/faculty/maria-guadalupe' target='_blank'>Maria Guadalupe</a> and <a href='https://www.insead.edu/faculty/kaisa-snellman' target='_blank'>Kaisa Snellman</a>, I use novel survey data to explore how hyper-competitive corporate cultures affect both individual well-being and organisational performance. In a separate project with <a href='https://kourtneykoebel.ca/' target='_blank'>Kourtney Koebel</a>, I examine how the transition to motherhood impacts women's employment trajectories and well-being, using large-scale administrative panel data.</p><p>My research aims to understand and address the complex intersections of work, well-being, and inequality. I welcome opportunities to collaborate on these issues!</p>
             </div>
         </div>
     </div>
@@ -573,10 +588,13 @@
                 <a href="daisy_pollenne_cv_25.pdf" target="_blank">
                     <i class="fas fa-file-pdf"></i> Download Full CV
                 </a>
+                <div class="mobile-cv-message">
+                    For best viewing experience on mobile devices, please download the CV
+                </div>
             </div>
             
             <div class="cv-embed">
-                <iframe src="daisy_pollenne_cv_25.pdf" title="CV"></iframe>
+                <iframe src="daisy_pollenne_cv_25.pdf" title="CV" id="cv-iframe"></iframe>
             </div>
         </div>
     </div>
@@ -656,8 +674,25 @@
                 if (iframe && !iframe.src) {
                     iframe.src = "daisy_pollenne_cv_25.pdf";
                 }
+                
+                // Check if we're on mobile and provide guidance
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    document.querySelector('.mobile-cv-message').style.display = 'block';
+                }
             }
         }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial check for mobile devices
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Set PDF to be downloadable on iOS
+                const iframe = document.querySelector('.cv-embed iframe');
+                if (iframe) {
+                    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms');
+                }
+            }
+        });
     </script>
 </body>
 </html>
