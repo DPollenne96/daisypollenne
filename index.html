@@ -318,21 +318,18 @@
             border-radius: 8px;
             box-shadow: var(--box-shadow);
             overflow: hidden;
-            position: relative;
         }
         
-        .cv-embed iframe {
+        .cv-embed object {
             width: 100%;
             height: 100%;
             border: none;
         }
         
-        .mobile-cv-message {
-            display: none;
-            margin-top: 10px;
+        .cv-embed p {
             text-align: center;
-            color: var(--light-text);
-            font-size: 0.9em;
+            padding: 20px;
+            background-color: var(--card-bg);
         }
         
         /* Contact Tab */
@@ -507,12 +504,6 @@
             
             .cv-embed {
                 height: 500px;
-                overflow: auto;
-                -webkit-overflow-scrolling: touch;  /* Improves scrolling on iOS */
-            }
-            
-            .mobile-cv-message {
-                display: block;
             }
         }
     </style>
@@ -588,13 +579,13 @@
                 <a href="daisy_pollenne_cv_25.pdf" target="_blank">
                     <i class="fas fa-file-pdf"></i> Download Full CV
                 </a>
-                <div class="mobile-cv-message">
-                    For best viewing experience on mobile devices, please download the CV
-                </div>
             </div>
             
             <div class="cv-embed">
-                <iframe src="daisy_pollenne_cv_25.pdf" title="CV" id="cv-iframe"></iframe>
+                <object data="daisy_pollenne_cv_25.pdf" type="application/pdf" width="100%" height="100%">
+                    <p>It appears your browser doesn't support embedded PDFs. 
+                    <a href="daisy_pollenne_cv_25.pdf" target="_blank">Click here to view the CV</a>.</p>
+                </object>
             </div>
         </div>
     </div>
@@ -667,32 +658,7 @@
             if (window.innerWidth <= 768) {
                 nav.classList.remove('active');
             }
-            
-            // If this is the CV tab, ensure the iframe is properly loaded
-            if (tabId === 'cv') {
-                const iframe = document.querySelector('.cv-embed iframe');
-                if (iframe && !iframe.src) {
-                    iframe.src = "daisy_pollenne_cv_25.pdf";
-                }
-                
-                // Check if we're on mobile and provide guidance
-                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    document.querySelector('.mobile-cv-message').style.display = 'block';
-                }
-            }
         }
-        
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initial check for mobile devices
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Set PDF to be downloadable on iOS
-                const iframe = document.querySelector('.cv-embed iframe');
-                if (iframe) {
-                    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms');
-                }
-            }
-        });
     </script>
 </body>
 </html>
