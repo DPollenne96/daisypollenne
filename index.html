@@ -67,9 +67,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 0;
+            padding: 20px 0;
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
         
         .name-title h1 {
@@ -80,10 +80,31 @@
         }
         
         .name-title h2 {
-            margin: 8px 0 0 0;
+            margin: 5px 0 0 0;
             font-size: 1.1em;
             font-weight: 400;
             color: var(--light-text);
+            display: flex;
+            align-items: center;
+        }
+        
+        .scholar-link {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 8px;
+            color: #4285F4;
+            transition: var(--transition);
+        }
+        
+        .scholar-link:hover {
+            color: #0F9D58;
+            transform: translateY(-2px);
+        }
+        
+        .scholar-icon {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
         }
         
         .mobile-menu-toggle {
@@ -97,7 +118,7 @@
         
         nav {
             display: flex;
-            gap: 30px;
+            gap: 20px;
         }
         
         nav a {
@@ -135,7 +156,7 @@
         /* Tab Content */
         .tab-content {
             display: none;
-            padding: 30px 0;
+            padding: 20px 0;
         }
         
         .tab-content.active {
@@ -152,11 +173,11 @@
         .bio-container {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 20px;
         }
         
         .bio-title {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-align: center;
         }
         
@@ -165,7 +186,7 @@
             display: inline-block;
             color: var(--primary-color);
             font-size: 1.8em;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
         
         .bio-title h3:after {
@@ -180,7 +201,7 @@
         
         .bio-main-content {
             display: flex;
-            gap: 40px;
+            gap: 20px;
         }
         
         .bio-left-column {
@@ -209,13 +230,13 @@
             flex: 0 0 60%;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 10px;
         }
         
         .bio-box {
             background-color: var(--card-bg);
             border-radius: 8px;
-            padding: 25px;
+            padding: 15px;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             border-left: 4px solid var(--primary-color);
@@ -229,7 +250,7 @@
         .bio-box h4 {
             color: var(--primary-color);
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-size: 1.2em;
         }
         
@@ -239,17 +260,17 @@
         }
         
         .bio-box li {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         
         .about-text {
-            margin-top: 30px;
+            margin-top: 15px;
         }
         
         .about-text p {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-size: 1.05em;
-            line-height: 1.7;
+            line-height: 1.6;
         }
         
         .about-text p:last-child {
@@ -273,12 +294,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
         }
         
         .cv-link {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         
         .cv-link a {
@@ -286,7 +307,7 @@
             background-color: var(--primary-color);
             color: white;
             font-weight: 500;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 30px;
             transition: var(--transition);
             box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
@@ -322,13 +343,13 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 15px;
         }
         
         .contact-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
         
         .contact-title h3 {
@@ -336,7 +357,7 @@
             font-size: 1.5em;
             position: relative;
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
         
         .contact-title h3:after {
@@ -350,11 +371,11 @@
         }
         
         .contact-card {
-            flex: 0 0 calc(33.33% - 20px);
+            flex: 0 0 calc(33.33% - 15px);
             min-width: 280px;
             background-color: var(--card-bg);
             border-radius: 10px;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
@@ -362,20 +383,20 @@
         }
         
         .contact-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         
         .contact-icon {
             font-size: 2.5em;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background-color: rgba(74, 144, 226, 0.1);
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
             transition: var(--transition);
         }
         
@@ -386,13 +407,13 @@
         
         .contact-title-card {
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: var(--text-color);
             font-size: 1.2em;
         }
         
         .contact-detail {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: var(--light-text);
         }
         
@@ -402,7 +423,7 @@
             justify-content: center;
             background-color: var(--primary-color);
             color: white !important;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 30px;
             font-weight: 500;
             transition: var(--transition);
@@ -422,9 +443,9 @@
         
         /* Footer */
         footer {
-            margin-top: 80px;
+            margin-top: 40px;
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
             border-top: 1px solid var(--border-color);
             color: var(--light-text);
             font-size: 0.95em;
@@ -439,13 +460,13 @@
             header {
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 20px 0;
+                padding: 15px 0;
             }
             
             .mobile-menu-toggle {
                 display: block;
                 position: absolute;
-                top: 20px;
+                top: 15px;
                 right: 15px;
             }
             
@@ -453,8 +474,8 @@
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                margin-top: 20px;
-                gap: 15px;
+                margin-top: 15px;
+                gap: 10px;
             }
             
             nav.active {
@@ -462,7 +483,7 @@
             }
             
             nav a {
-                padding: 12px;
+                padding: 10px;
                 width: 100%;
                 text-align: center;
                 background-color: var(--card-bg);
@@ -476,7 +497,7 @@
             
             .bio-main-content {
                 flex-direction: column;
-                gap: 30px;
+                gap: 15px;
             }
             
             .bio-left-column, .bio-right-column {
@@ -497,7 +518,15 @@
     <header>
         <div class="name-title">
             <h1>Daisy Pollenne</h1>
-            <h2>Well-being Researcher</h2>
+            <h2>
+                Well-being Researcher
+                <a href="https://scholar.google.com/citations?user=7HZWZ2kAAAAJ&hl=fr&oi=ao" target="_blank" class="scholar-link" title="Google Scholar Profile">
+                    <svg class="scholar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                        <path d="M10.444 12.5h3.111v1.556h-3.11V12.5zm6.222 1.556h-1.555v1.555h-1.556v1.556H12v1.555h4.667v-4.666z"/>
+                    </svg>
+                </a>
+            </h2>
         </div>
         <button class="mobile-menu-toggle" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
@@ -526,7 +555,7 @@
                     <div class="bio-box">
                         <h4>My research interests</h4>
                         <ul>
-                            <li>Workplace well-being</li><li>Performance and productivity</li><li>Inequality and inclusion</li>
+                            <li>Well-being</li><li>Work, performance and productivity</li><li>Inequality and inclusion</li>
                         </ul>
                     </div>
                     
@@ -540,7 +569,7 @@
             </div>
             
             <div class="about-text">
-                <p>I am a Postdoctoral Researcher at INSEAD in the Organisational Behaviour area, jointly affiliated with the <a href='https://www.insead.edu/stone-centre-study-wealth-inequality' target='_blank'>Stone Centre for the Study of Wealth Inequality</a> and the <a href='https://www.insead.edu/gender-initiative' target='_blank'>INSEAD Gender Initiative</a>. My research examines the relationship between employment and well-being, focusing on how organisational structures and cultural norms shape individuals' experiences in professional environments.</p><p>I hold a Ph.D. in Social Anthropology from the University of Oxford, where my research on refugee well-being in the UK labour market examined tensions between immediate employment needs and refugees' long-term integration. This work has inspired a shift to my current research focus, on well-being in organisational contexts.</p><p>At INSEAD, I am currently developing several research streams. The first explores the potential trade-offs for organisations in promoting individual and collective purpose, and how such tensions affect individuals' well-being and performance. This research is in collaboration with <a href='https://www.insead.edu/faculty/maria-guadalupe' target='_blank'>Maria Guadalupe</a> and <a href='https://www.insead.edu/faculty/kaisa-snellman' target='_blank'>Kaisa Snellman</a>. The second examines well-being implications of changes in women's employment careers during the transition to motherhood, a project I work on with <a href='https://kourtneykoebel.ca/' target='_blank'>Kourtney Koebel</a>.</p>
+                <p>I am a Postdoctoral Researcher at INSEAD in the Organisational Behaviour area, jointly affiliated with the <a href='https://www.insead.edu/stone-centre-study-wealth-inequality' target='_blank'>Stone Centre for the Study of Wealth Inequality</a> and the <a href='https://www.insead.edu/gender-initiative' target='_blank'>INSEAD Gender Initiative</a>. My research examines the relation between work and well-being, with particular focus on how workplace demands and stressors are unequally distributed across individuals. I also investigate how unique organisational structures and cultural norms shape individuals' experiences in their professional environments.</p><p>My academic foundation comes from the University of Oxford, where I earned my Ph.D. in Social Anthropology. Through field observations and in-depth interviews with refugees in the UK, I explored the meaning of well-being after seeking asylum. Further, I examined how refugees' well-being was affected by their limited access to and concentration in certain occupational fields. This work sparked my current focus on well-being in organisational contexts.</p><p>At INSEAD, I am developing several research streams. Working with <a href='https://www.insead.edu/faculty/maria-guadalupe' target='_blank'>Maria Guadalupe</a> and <a href='https://www.insead.edu/faculty/kaisa-snellman' target='_blank'>Kaisa Snellman</a>, I use novel survey data to explore how hyper-competitive corporate cultures affect both individual well-being and organizational performance. In a separate project with <a href='https://kourtneykoebel.ca/' target='_blank'>Kourtney Koebel</a>, I examine how the transition to motherhood impacts women's employment trajectories and well-being, using large-scale administrative data.</p><p>My research aims to understand and address the complex intersections of work, well-being, and inequality. I welcome opportunities to collaborate on these issues!</p>
             </div>
         </div>
     </div>
