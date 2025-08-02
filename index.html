@@ -176,44 +176,20 @@
             gap: 20px;
         }
         
-        .bio-title {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .bio-title h3 {
-            position: relative;
-            display: inline-block;
-            color: var(--primary-color);
-            font-size: 1.8em;
-            padding-bottom: 8px;
-        }
-        
-        .bio-title h3:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background-color: var(--primary-color);
-            bottom: 0;
-            left: 25%;
-        }
-        
         .bio-main-content {
             display: flex;
             gap: 20px;
         }
         
         .bio-left-column {
-            flex: 0 0 35%;  /* Reduced from 40% to 35% */
+            flex: 0 0 35%;
         }
         
         .bio-photo {
-            width: 85%;  /* Reduced from 100% to 85% */
+            width: 100%;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: var(--box-shadow);
-            margin: 0 auto;  /* Center the photo */
         }
         
         .bio-photo img {
@@ -228,10 +204,11 @@
         }
         
         .bio-right-column {
-            flex: 0 0 65%;  /* Increased from 60% to 65% to match left column reduction */
+            flex: 0 0 65%;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            justify-content: space-between;
         }
         
         .bio-box {
@@ -241,6 +218,7 @@
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             border-left: 4px solid var(--primary-color);
+            flex: 1;
         }
         
         .bio-box:hover {
@@ -262,6 +240,15 @@
         
         .bio-box li {
             margin-bottom: 5px;
+        }
+        
+        .bio-position {
+            line-height: 1.6;
+        }
+        
+        .bio-position p {
+            margin: 0;
+            font-size: 1.05em;
         }
         
         .about-text {
@@ -541,10 +528,6 @@
     
     <div id="bio" class="tab-content active">
         <div class="bio-container">
-            <div class="bio-title">
-                <h3>About</h3>
-            </div>
-            
             <div class="bio-main-content">
                 <div class="bio-left-column">
                     <div class="bio-photo">
@@ -553,6 +536,15 @@
                 </div>
                 
                 <div class="bio-right-column">
+                    <div class="bio-box">
+                        <h4>About me</h4>
+                        <div class="bio-position">
+                            <p>Postdoctoral Researcher</p>
+                            <p>Organisational Behaviour</p>
+                            <p>INSEAD</p>
+                        </div>
+                    </div>
+                    
                     <div class="bio-box">
                         <h4>My research interests</h4>
                         <ul>
