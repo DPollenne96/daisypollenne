@@ -203,7 +203,7 @@
         #research-graph svg { display: block; }
 
         .graph-tooltip {
-            position: absolute;
+            position: fixed;
             background: white;
             border: 1px solid #e0e4f0;
             border-radius: 8px;
@@ -213,7 +213,7 @@
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.15s;
-            z-index: 10;
+            z-index: 9999;
             line-height: 1.5;
         }
         .graph-tooltip .tt-title {
@@ -259,6 +259,17 @@
         .legend-concept { background: #5C6BC0; }
         .legend-paper   { background: #9FA8DA; }
         .legend-hint { margin-left: auto; color: #bbb; font-style: italic; }
+        .legend-icon-link {
+            display: inline-flex; align-items: center; vertical-align: middle;
+            color: #4285F4;
+            transition: var(--transition);
+            text-decoration: none;
+            margin: 0 2px;
+        }
+        .legend-icon-link:hover { color: #0F9D58; transform: translateY(-1px); }
+        .legend-icon-link .fas { font-size: 13px; color: var(--primary-color); }
+        .legend-icon-link:hover .fas { color: var(--secondary-color); }
+        .legend-gs-icon { width: 16px; height: 16px; vertical-align: middle; }
 
         /* ── CV Tab ── */
         .cv-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -430,18 +441,30 @@
     <!-- ═══════════════════════════════ RESEARCH TAB ═══════════════════════════════ -->
     <div id="research" class="tab-content">
         <div class="research-intro">
-            <p>My research examines how organisations shape individuals' work and well-being. I also try to understand who bears the cost of misaligned incentives, norms, and structures.</p>
+            <p>My research focuses on how organisations shape individuals' work and well-being. I also examine who bears the cost of misaligned incentives, norms, and structures.</p>
         </div>
 
         <div id="research-graph-container">
             <div id="research-graph"></div>
-            <div id="graph-tooltip" class="graph-tooltip"></div>
         </div>
+        <div id="graph-tooltip" class="graph-tooltip"></div>
 
         <div class="graph-legend">
-            <span class="legend-item"><span class="legend-dot legend-center"></span> Research pillars &mdash; hover to explore connections</span>
-            <span class="legend-item"><span class="legend-dot legend-paper"></span> Papers &amp; chapters &mdash; </span>
-            <span class="legend-hint"><i class="fas fa-hand-pointer"></i>&nbsp; Hover &middot; drag &middot; scroll to zoom</span>
+            <span class="legend-item"><span class="legend-dot legend-center"></span> Research pillars</span>
+            <span class="legend-item"><span class="legend-dot legend-paper"></span> Published &amp; Working papers &mdash; click
+                <a href="https://scholar.google.com/citations?user=7HZWZ2kAAAAJ&hl=fr&oi=ao" target="_blank" class="legend-icon-link" title="Google Scholar Profile">
+                    <svg class="legend-gs-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                        <path d="M10.444 12.5h3.111v1.556h-3.11V12.5zm6.222 1.556h-1.555v1.555h-1.556v1.556H12v1.555h4.667v-4.666z"/>
+                    </svg>
+                </a>
+                to access or
+                <a href="mailto:daisy.pollenne@insead.edu" class="legend-icon-link" title="Email Daisy Pollenne">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                me
+            </span>
+            <span class="legend-hint"><i class="fas fa-hand-pointer"></i>&nbsp; Hover/tap &middot; drag &middot; scroll to zoom</span>
         </div>
     </div>
 
@@ -684,10 +707,15 @@
                 .attr("height", height);
 
             const zoomLayer = svg.append("g");
-            svg.call(
-                d3.zoom().scaleExtent([0.3, 4])
-                    .on("zoom", e => zoomLayer.attr("transform", e.transform))
-            );
+            const zoomBehavior = d3.zoom().scaleExtent([0.3, 4])
+                .on("zoom", e => zoomLayer.attr("transform", e.transform));
+            svg.call(zoomBehavior);
+            // Zoom in on entry so graph fills the box rather than floating in empty space
+            const initScale = Math.min(1.4, width / 520);
+            svg.call(zoomBehavior.transform,
+                d3.zoomIdentity
+                    .translate(cx * (1 - initScale), cy * (1 - initScale))
+                    .scale(initScale));
 
             /* ── Force simulation ── */
             const simulation = d3.forceSimulation(nodesData)
@@ -847,10 +875,14 @@
             }
 
             function moveTooltip(e) {
-                const rect = containerEl.getBoundingClientRect();
-                let x = e.clientX - rect.left + 14;
-                let y = e.clientY - rect.top  - 14;
-                if (x + 265 > rect.width) x -= 280;
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                const ttW = 274, ttH = 170; // generous estimate
+                let x = (e.clientX || 0) + 14;
+                let y = (e.clientY || 0) - 14;
+                if (x + ttW > vw - 5) x = (e.clientX || 0) - ttW - 8;
+                if (x < 5) x = 5;
+                if (y + ttH > vh - 5) y = (e.clientY || 0) - ttH - 8;
                 if (y < 5) y = 5;
                 tooltipEl.style.left = x + "px";
                 tooltipEl.style.top  = y + "px";
