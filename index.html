@@ -359,6 +359,8 @@
             #research-graph { height: 400px; }
             .legend-hint { display: none; }
             .graph-legend { gap: 12px; }
+            .legend-papers-wrap { display: inline-flex; flex-direction: column; gap: 1px; vertical-align: middle; }
+            .legend-pl1, .legend-pl2, .legend-pl3 { display: block; line-height: 1.6; }
         }
     </style>
 </head>
@@ -451,19 +453,7 @@
 
         <div class="graph-legend">
             <span class="legend-item"><span class="legend-dot legend-center"></span> Research pillars</span>
-            <span class="legend-item"><span class="legend-dot legend-paper"></span> Published &amp; Working papers &mdash; click
-                <a href="https://scholar.google.com/citations?user=7HZWZ2kAAAAJ&hl=fr&oi=ao" target="_blank" class="legend-icon-link" title="Google Scholar Profile">
-                    <svg class="legend-gs-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
-                        <path d="M10.444 12.5h3.111v1.556h-3.11V12.5zm6.222 1.556h-1.555v1.555h-1.556v1.556H12v1.555h4.667v-4.666z"/>
-                    </svg>
-                </a>
-                to access or
-                <a href="mailto:daisy.pollenne@insead.edu" class="legend-icon-link" title="Email Daisy Pollenne">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                me
-            </span>
+            <span class="legend-item"><span class="legend-dot legend-paper"></span><span class="legend-papers-wrap"><span class="legend-pl1">Published &amp; Working papers &mdash; </span><span class="legend-pl2">click <a href="https://scholar.google.com/citations?user=7HZWZ2kAAAAJ&hl=fr&oi=ao" target="_blank" class="legend-icon-link" title="Google Scholar Profile"><svg class="legend-gs-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/><path d="M10.444 12.5h3.111v1.556h-3.11V12.5zm6.222 1.556h-1.555v1.555h-1.556v1.556H12v1.555h4.667v-4.666z"/></svg></a> to access</span> <span class="legend-pl3">or <a href="mailto:daisy.pollenne@insead.edu" class="legend-icon-link" title="Email Daisy Pollenne"><i class="fas fa-envelope"></i></a> me</span></span></span>
             <span class="legend-hint"><i class="fas fa-hand-pointer"></i>&nbsp; Hover/tap &middot; drag &middot; scroll to zoom</span>
         </div>
     </div>
@@ -757,7 +747,7 @@
                             if (!e.active) simulation.alphaTarget(0.3).restart();
                             d.fx = d.x; d.fy = d.y;
                         })
-                        .on("drag",  (e, d) => { d.fx = e.x; d.fy = e.y; })
+                        .on("drag",  (e, d) => { const [mx, my] = d3.pointer(e.sourceEvent, zoomLayer.node()); d.fx = mx; d.fy = my; })
                         .on("end",   (e, d) => {
                             if (!e.active) simulation.alphaTarget(0);
                             d.fx = null; d.fy = null;
