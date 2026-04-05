@@ -260,16 +260,16 @@
         .legend-paper   { background: #9FA8DA; }
         .legend-hint { margin-left: auto; color: #bbb; font-style: italic; }
         .legend-icon-link {
-            display: inline-flex; align-items: center; vertical-align: middle;
+            display: inline;
             color: #4285F4;
             transition: var(--transition);
             text-decoration: none;
-            margin: 0 2px;
+            margin: 0 1px;
         }
-        .legend-icon-link:hover { color: #0F9D58; transform: translateY(-1px); }
-        .legend-icon-link .fas { font-size: 13px; color: var(--primary-color); }
+        .legend-icon-link:hover { color: #0F9D58; }
+        .legend-icon-link .fas { font-size: 0.9em; color: var(--primary-color); vertical-align: -0.05em; }
         .legend-icon-link:hover .fas { color: var(--secondary-color); }
-        .legend-gs-icon { width: 16px; height: 16px; vertical-align: middle; }
+        .legend-gs-icon { width: 0.9em; height: 0.9em; vertical-align: -0.15em; display: inline; }
 
         /* ── CV Tab ── */
         .cv-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -750,7 +750,7 @@
             /* ── Node groups ── */
             const node = zoomLayer.append("g")
                 .selectAll("g").data(nodesData).join("g")
-                .style("cursor", d => d.type === "pillar" ? "grab" : (d.link ? "pointer" : "default"))
+                .style("cursor", d => d.type === "pillar" ? "grab" : "default")
                 .call(
                     d3.drag()
                         .on("start", (e, d) => {
@@ -794,18 +794,14 @@
                     e.stopPropagation();
                     const isTouch = e.sourceEvent && e.sourceEvent.type === "touchend";
                     if (isTouch) {
-                        // Tap once → show tooltip; tap again on same node → open link
+                        // Tap once → pin tooltip; tap again → dismiss
                         if (activeNode === d) {
-                            if (d.link) window.open(d.link, "_blank");
                             activeNode = null; hideTooltip();
                         } else {
                             activeNode = d;
                             showTooltip(e.sourceEvent.changedTouches
                                 ? e.sourceEvent.changedTouches[0] : e, d);
                         }
-                    } else {
-                        // Desktop click → open link directly
-                        if (d.link) window.open(d.link, "_blank");
                     }
                 });
 
