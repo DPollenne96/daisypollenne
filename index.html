@@ -703,7 +703,7 @@
             const initScale = Math.min(1.4, width / 520);
             svg.call(zoomBehavior.transform,
                 d3.zoomIdentity
-                    .translate(cx * (1 - initScale), cy * (1 - initScale) - 30)
+                    .translate(cx * (1 - initScale), cy * (1 - initScale) - 40)
                     .scale(initScale));
 
             /* ── Force simulation ── */
