@@ -746,7 +746,13 @@
                             if (!e.active) simulation.alphaTarget(0.3).restart();
                             d.fx = d.x; d.fy = d.y;
                         })
-                        .on("drag",  (e, d) => { const [mx, my] = d3.pointer(e.sourceEvent, zoomLayer.node()); d.fx = mx; d.fy = my; })
+                        .on("drag",  (e, d) => {
+                            const src = e.sourceEvent;
+                            // On mobile a tap fires drag with touchend (touches.length === 0) — skip to avoid jump to [0,0]
+                            if (src && src.touches !== undefined && src.touches.length === 0) return;
+                            const [mx, my] = d3.pointer(src, zoomLayer.node());
+                            d.fx = mx; d.fy = my;
+                        })
                         .on("end",   (e, d) => {
                             if (!e.active) simulation.alphaTarget(0);
                             d.fx = null; d.fy = null;
