@@ -745,17 +745,27 @@
                         .on("start", (e, d) => {
                             if (!e.active) simulation.alphaTarget(0.3).restart();
                             d.fx = d.x; d.fy = d.y;
+                            d._dragOriginX = d.x; d._dragOriginY = d.y;
+                            d._hasDragged = false;
                         })
-                        .on("drag",  (e, d) => {
+                        .on("drag", (e, d) => {
                             const src = e.sourceEvent;
-                            // On mobile a tap fires drag with touchend (touches.length === 0) — skip to avoid jump to [0,0]
+                            // Skip touchend (empty touches) to avoid jump to [0,0] on tap
                             if (src && src.touches !== undefined && src.touches.length === 0) return;
                             const [mx, my] = d3.pointer(src, zoomLayer.node());
-                            d.fx = mx; d.fy = my;
+                            // Only commit if pointer has genuinely moved (distinguishes tap from drag)
+                            if (Math.hypot(mx - d._dragOriginX, my - d._dragOriginY) > 8) {
+                                d._hasDragged = true;
+                                d.fx = mx; d.fy = my;
+                            }
                         })
-                        .on("end",   (e, d) => {
+                        .on("end", (e, d) => {
                             if (!e.active) simulation.alphaTarget(0);
-                            d.fx = null; d.fy = null;
+                            if (!d._hasDragged) {
+                                // Tap, not drag — snap back to where it was
+                                d.fx = d._dragOriginX; d.fy = d._dragOriginY;
+                            }
+                            // Leave fx/fy set — node stays pinned where dropped
                         })
                 )
                 .on("mouseover", function(e, d) {
