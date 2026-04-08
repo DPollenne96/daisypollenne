@@ -737,6 +737,7 @@
             });
 
             /* ── Node groups ── */
+            /* ── Node groups ── */
             const node = zoomLayer.append("g")
                 .selectAll("g").data(nodesData).join("g")
                 .style("cursor", d => d.type === "pillar" ? "grab" : "default")
@@ -744,8 +745,9 @@
                     d3.drag()
                         .on("start", (e, d) => {
                             if (!e.active) simulation.alphaTarget(0.3).restart();
-                            d.fx = d.x; d.fy = d.y;
-                            d._dragOriginX = d.x; d._dragOriginY = d.y;
+                            // Initialize these on every drag start
+                            d._dragOriginX = d.x;
+                            d._dragOriginY = d.y;
                             d._hasDragged = false;
                         })
                         .on("drag", (e, d) => {
@@ -764,16 +766,21 @@
                             // Only commit if genuinely moved (guards against tap misfires)
                             if (Math.hypot(mx - d._dragOriginX, my - d._dragOriginY) > 8) {
                                 d._hasDragged = true;
-                                d.fx = mx; d.fy = my;
+                                d.fx = mx; 
+                                d.fy = my;
                             }
                         })
                         .on("end", (e, d) => {
                             if (!e.active) simulation.alphaTarget(0);
-                            if (!d._hasDragged) {
-                                // Tap, not drag — snap back to where it was
-                                d.fx = d._dragOriginX; d.fy = d._dragOriginY;
+                            if (d._hasDragged) {
+                                // Only pin if they actually dragged
+                                d.fx = d.x;
+                                d.fy = d.y;
+                            } else {
+                                // Just a tap - no pinning, let forces take over
+                                d.fx = null;
+                                d.fy = null;
                             }
-                            // Leave fx/fy set — node stays pinned where dropped
                         })
                 )
                 .on("mouseover", function(e, d) {
