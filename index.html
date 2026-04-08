@@ -750,10 +750,18 @@
                         })
                         .on("drag", (e, d) => {
                             const src = e.sourceEvent;
-                            // Skip touchend (empty touches) to avoid jump to [0,0] on tap
-                            if (src && src.touches !== undefined && src.touches.length === 0) return;
-                            const [mx, my] = d3.pointer(src, zoomLayer.node());
-                            // Only commit if pointer has genuinely moved (distinguishes tap from drag)
+                            if (!src) return;
+                            // Skip touchend (touches empty) — a tap, not a drag
+                            if (src.touches !== undefined && src.touches.length === 0) return;
+                            // Get reliable client coords from touch or mouse
+                            const clientX = src.touches ? src.touches[0].clientX : src.clientX;
+                            const clientY = src.touches ? src.touches[0].clientY : src.clientY;
+                            // Convert to simulation space: SVG-local → inverse zoom transform
+                            const svgRect = svg.node().getBoundingClientRect();
+                            const t = d3.zoomTransform(svg.node());
+                            const mx = (clientX - svgRect.left - t.x) / t.k;
+                            const my = (clientY - svgRect.top  - t.y) / t.k;
+                            // Only commit if genuinely moved (guards against tap misfires)
                             if (Math.hypot(mx - d._dragOriginX, my - d._dragOriginY) > 8) {
                                 d._hasDragged = true;
                                 d.fx = mx; d.fy = my;
