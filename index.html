@@ -55,9 +55,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 14px 0;
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         .name-title h1 {
@@ -119,7 +119,7 @@
         nav a.active:after { width: 100%; }
 
         /* ── Tab system ── */
-        .tab-content { display: none; padding: 20px 0; }
+        .tab-content { display: none; padding: 12px 0; }
         .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
 
         @keyframes fadeIn {
@@ -128,8 +128,8 @@
         }
 
         /* ── Bio Tab ── */
-        .bio-container { display: flex; flex-direction: column; gap: 20px; }
-        .bio-main-content { display: flex; gap: 20px; }
+        .bio-container { display: flex; flex-direction: column; gap: 14px; }
+        .bio-main-content { display: flex; gap: 14px; }
         .bio-left-column { flex: 0 0 35%; }
 
         .bio-photo {
@@ -152,7 +152,7 @@
         .bio-box {
             background-color: var(--card-bg);
             border-radius: 8px;
-            padding: 15px;
+            padding: 12px;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             border-left: 4px solid var(--primary-color);
@@ -165,8 +165,8 @@
         .bio-position { line-height: 1.6; }
         .bio-position p { margin: 0; font-size: 1.05em; }
 
-        .about-text { margin-top: 15px; }
-        .about-text p { margin-bottom: 15px; font-size: 1.05em; line-height: 1.6; }
+        .about-text { margin-top: 10px; }
+        .about-text p { margin-bottom: 11px; font-size: 1.05em; line-height: 1.55; }
         .about-text p:last-child { margin-bottom: 0; }
         .about-text a {
             color: var(--primary-color);
@@ -178,20 +178,23 @@
 
         /* ── Research Tab ── */
         .research-intro {
-            max-width: 700px;
-            margin: 0 auto 28px;
+            max-width: 1040px;
+            margin: 0 auto 16px;
             text-align: center;
         }
         .research-intro p {
             font-size: 1.05em;
             color: #555;
-            line-height: 1.8;
+            line-height: 1.6;
             font-style: italic;
         }
 
         #research-graph-container {
             position: relative;
             width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
             background: #fafbfd;
             border-radius: 12px;
             border: 1px solid #e4e7f0;
@@ -199,7 +202,7 @@
             box-shadow: var(--box-shadow);
             margin-bottom: 14px;
         }
-        #research-graph { width: 100%; height: 480px; }
+        #research-graph { width: 100%; height: 540px; }
         #research-graph svg { display: block; }
 
         .graph-tooltip {
@@ -242,11 +245,11 @@
         .graph-legend {
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 18px;
             flex-wrap: wrap;
             font-size: 0.82em;
             color: var(--light-text);
-            padding: 6px 2px 14px;
+            padding: 4px 2px 8px;
         }
         .legend-item { display: flex; align-items: center; gap: 7px; }
         .legend-dot {
@@ -258,6 +261,11 @@
         .legend-center  { background: #4A90E2; }
         .legend-concept { background: #5C6BC0; }
         .legend-paper   { background: #9FA8DA; }
+        .legend-jmp     { background: #8e44ad; }
+        .legend-gradient {
+            width: 34px; height: 9px; border-radius: 5px; display: inline-block; flex-shrink: 0;
+            background: linear-gradient(90deg, #C7CCEB, #5C6BC0);
+        }
         .legend-hint { margin-left: auto; color: #bbb; font-style: italic; }
         .legend-icon-link {
             display: inline;
@@ -299,7 +307,7 @@
             min-width: 280px;
             background-color: var(--card-bg);
             border-radius: 10px;
-            padding: 20px;
+            padding: 16px;
             text-align: center;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
@@ -333,9 +341,9 @@
 
         /* ── Footer ── */
         footer {
-            margin-top: 40px;
+            margin-top: 24px;
             text-align: center;
-            padding: 20px 0;
+            padding: 14px 0;
             border-top: 1px solid var(--border-color);
             color: var(--light-text);
             font-size: 0.95em;
@@ -356,7 +364,7 @@
             .cv-embed { display: none; }
             .cv-link { margin-bottom: 0; }
             .cv-link a { padding: 15px 30px; font-size: 1.1em; }
-            #research-graph { height: 400px; }
+            #research-graph { height: 440px; }
             .graph-legend { flex-direction: column; align-items: flex-start; gap: 5px; padding-bottom: 10px; }
             .legend-hint { margin-left: 0; color: #888; }
             .legend-papers-action { display: block; padding-left: 18px; }
@@ -426,13 +434,15 @@
             </div>
 
             <div class="about-text">
-                <p>I am a Postdoctoral Researcher at INSEAD in the Organisational Behaviour area, jointly affiliated with the <a href='https://www.insead.edu/stone-centre-study-wealth-inequality' target='_blank'>Stone Centre for the Study of Wealth Inequality</a> and the <a href='https://www.insead.edu/gender-initiative' target='_blank'>INSEAD Gender Initiative</a>. My research sits at the intersection of <strong>work, well-being, and inequality</strong> — asking how organisational structures, norms, and work arrangements shape who thrives, and who bears the cost when these are misaligned.</p>
+                <p>I am a Postdoctoral Researcher in the Organisational Behaviour area at INSEAD, jointly affiliated with the <a href='https://www.insead.edu/stone-centre-study-wealth-inequality' target='_blank'>Stone Centre for the Study of Wealth Inequality</a> and the <a href='https://www.insead.edu/gender-initiative' target='_blank'>INSEAD Gender Initiative</a>. I hold a DPhil in Social Anthropology from the University of Oxford.</p>
 
-                <p>My recent empirical work draws on large-scale panel data and causal inference (DiDs, event studies). I am trained in several qualitative methods, and am currently working on developing survey experiments with senior managers. This methodological range allows me to study different elements, such as the structural drivers of inequality and the micro-level mechanisms that sustain them.</p>
+                <p>My research examines how organizations shape employee well-being, retention, and careers, and how organizational processes contribute to broader social and labor market inequalities. I am particularly interested in understanding, <strong>when organizations intervene to improve working conditions, what do those interventions actually change—and for whom?</strong></p>
 
-                <p>At INSEAD, two main themes anchor my research agenda. With <a href='https://kourtneykoebel.ca/' target='_blank'>Kourtney Koebel</a>, I study how different work arrangements shape inequalities in employee well-being and wages. We also examined how parenthood creates asymmetric well-being costs for mothers and fathers — documenting that fathers, not only mothers, bear significant and lasting well-being penalties from intense work arrangements. With <a href='https://www.insead.edu/faculty/maria-guadalupe' target='_blank'>Maria Guadalupe</a> and <a href='https://www.insead.edu/faculty/kaisa-snellman' target='_blank'>Kaisa Snellman</a>, I examine whether hyper-competitive organisational cultures drive performance and well-being in academia, with initial findings suggesting that such norms impose well-being costs across the board without delivering performance gains. Taken together, these projects reflect my broader interest in understanding which types of organisations and workplaces genuinely support individuals’ lives without exacerbating or creating new inequalities.</p>
+                <p>In current research, I study how flexible work arrangements shape women's employment, showing that flexibility is associated more strongly with remaining with an employer than with remaining in paid work itself. This shifts attention from whether organizations retain women to how they shape the organizations in which workers build their careers. In related work, I examine how the employment adjustments associated with parenthood shape the gender pay gap and employee well-being, connecting organizational processes to outcomes that unfold across careers and the labor market.</p>
 
-                <p>My foundation in this work comes from my D.Phil. at the University of Oxford, where I studied the well-being of refugees and migrants in the UK through field interviews and large-scale survey analysis. This research is published in the <em>Journal of Refugee Studies</em>, <em>Comparative Migration Studies</em>, and the <em>Refugee Survey Quarterly</em>.</p>
+                <p>Alongside this, my research agenda asks how organizational processes are interpreted, implemented, and distributed. For instance, I study how managers and teams translate organizational practices into employees' experiences, including why the same flexible-work request can produce different outcomes depending on who makes it, and when interventions intended to improve participation and inclusion succeed or fail. With colleagues, I am also reconstructing the Flex Index, a firm-level database of work arrangements, to examine how organizations structure and absorb alternative work arrangements over time.</p>
+
+                <p>Across these projects, I seek to understand how organizations can shape work in ways that improve employee well-being and organizational performance without reproducing the inequalities they are intended to address.</p>
 
                 <p>I welcome opportunities to collaborate on questions at the intersection of work, well-being, and inequality.</p>
             </div>
@@ -442,13 +452,14 @@
     <!-- ═══════════════════════════════ RESEARCH TAB ═══════════════════════════════ -->
     <div id="research" class="tab-content">
         <div class="research-intro">
-            <p>My research focuses on how organisations shape individuals' work and well-being. I also examine who bears the cost of misaligned workplace incentives, norms, and structures.</p>
+            <p>My research examines how organizations affect individual well-being, productivity, and careers. I also study how these organizational processes accumulate beyond the firm to shape inequalities in labor markets and society more broadly.</p>
         </div>
 
         <div class="graph-legend">
             <span class="legend-hint"><i class="fas fa-hand-pointer"></i>&nbsp; Hover/tap &middot; drag &middot; scroll to zoom</span>
             <span class="legend-item"><span class="legend-dot legend-center"></span> Research pillars</span>
-            <span class="legend-item"><span class="legend-dot legend-paper"></span> Published &amp; Working papers<span class="legend-papers-action"> &mdash; click <a href="https://scholar.google.com/citations?user=7HZWZ2kAAAAJ&hl=fr&oi=ao" target="_blank" class="legend-icon-link" title="Google Scholar Profile"><svg class="legend-gs-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/><path d="M10.444 12.5h3.111v1.556h-3.11V12.5zm6.222 1.556h-1.555v1.555h-1.556v1.556H12v1.555h4.667v-4.666z"/></svg></a> to access or <a href="mailto:daisy.pollenne@insead.edu" class="legend-icon-link" title="Email Daisy Pollenne"><i class="fas fa-envelope"></i></a> me</span></span>
+            <span class="legend-item"><span class="legend-dot legend-jmp"></span> Job Market Paper</span>
+            <span class="legend-item"><span class="legend-gradient"></span> Papers, early &rarr; published<span class="legend-papers-action"> &mdash; click <a href="https://scholar.google.com/citations?user=7HZWZ2kAAAAJ&hl=fr&oi=ao" target="_blank" class="legend-icon-link" title="Google Scholar Profile"><svg class="legend-gs-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/><path d="M10.444 12.5h3.111v1.556h-3.11V12.5zm6.222 1.556h-1.555v1.555h-1.556v1.556H12v1.555h4.667v-4.666z"/></svg></a> to access or <a href="mailto:daisy.pollenne@insead.edu" class="legend-icon-link" title="Email Daisy Pollenne"><i class="fas fa-envelope"></i></a> me</span></span>
         </div>
 
         <div id="research-graph-container">
@@ -537,84 +548,113 @@
             /* Three equal pillars set in a triangle; papers orbit them */
             const nodesData = [
                 // Pillars — pre-positioned in equilateral triangle, spread scales with screen width
-                { id: "work",        label: "Work",        type: "pillar", r: 22, x: cx,                          y: cy - Math.min(150, height * 0.30) },
-                { id: "wellbeing",   label: "Well-being",  type: "pillar", r: 22, x: cx + Math.min(140, width * 0.32),  y: cy + Math.min(75, height * 0.15)  },
-                { id: "inequality",  label: "Inequality",  type: "pillar", r: 22, x: cx - Math.min(140, width * 0.32),  y: cy + Math.min(75, height * 0.15)  },
+                { id: "work",        label: "Work",        type: "pillar", r: 22, x: cx,                          y: cy - Math.min(120, height * 0.22) },
+                { id: "wellbeing",   label: "Well-being",  type: "pillar", r: 22, x: cx + Math.min(175, width * 0.38),  y: cy + Math.min(60, height * 0.12)  },
+                { id: "inequality",  label: "Inequality",  type: "pillar", r: 22, x: cx - Math.min(175, width * 0.38),  y: cy + Math.min(60, height * 0.12)  },
 
-                // Papers & chapters — all equal size
+                // Job Market Paper — visually distinguished, see nodeColor()
                 {
-                    id: "mcc", label: "Publish\n& Perish", type: "paper", r: 10,
-                    full: "Publish and Perish",
-                    coauthors: "with Maria Guadalupe & Kaisa Snellman - Under Review",
+                    id: "jmp", label: "In the Firm or\nin the Workforce", type: "paper", r: 13, stage: "jmp",
+                    full: "In the Firm or in the Workforce? Flexible Work Arrangements as Organizational Accommodations and Inducements",
+                    coauthors: "with Kaisa Snellman — Job Market Paper, in preparation for Organization Science",
+                    question: "Do flexible arrangements function as accommodations that keep women in the workforce, or as inducements that bind employees to their current employer?",
+                    link: null
+                },
+                // Papers & chapters — colour signals stage, see STAGE_COLOR
+                {
+                    id: "mcc", label: "Publish\n& Perish", type: "paper", r: 10, stage: "working_paper",
+                    full: "Publish and Perish? Culture, Performance and Well-Being in Academia",
+                    coauthors: "with Maria Guadalupe & Kaisa Snellman - Working Paper, in preparation for Management Science",
                     question: "Do hyper-competitive cultures drive academic performance and well-being or undermine them?",
                     link: SCHOLAR
                 },
                 {
-                    id: "psysafe", label: "Unlocking\nDiversity", type: "paper", r: 10,
-                    full: "Unlocking Diversity: When Psychological Safety Matters Most",
-                    coauthors: "with Henrik Bresman & Nicole Abi-Esber - Working Paper",
+                    id: "psysafe", label: "Psych Safety in\nDivided Teams", type: "paper", r: 10, stage: "under_review",
+                    full: "Psychological Safety in Divided Teams",
+                    coauthors: "with Nicole Abi-Esber & Henrik Bresman - Under Review, Academy of Management Journal",
                     question: "When does psychological safety matter most for team performance and inclusion?",
                     link: SCHOLAR
                 },
                 {
-                    id: "penalties", label: "Penalties &\nPremiums", type: "paper", r: 10,
+                    id: "penalties", label: "Penalties &\nPremiums", type: "paper", r: 10, stage: "working_paper",
                     full: "On Penalties and Premiums: The Impact of Childbirth on the Well-Being and Work of Parents",
-                    coauthors: "with Kourtney Koebel - Under Review",
+                    coauthors: "with Kourtney Koebel - Working Paper, in preparation for ILR Review",
                     question: "Are the economic penalties of parenthood mirrored by well-being penalties?",
                     link: SCHOLAR
                 },
                 {
-                    id: "flexitime", label: "Flexitime &\nWell-being", type: "paper", r: 10,
+                    id: "flexitime", label: "Flexitime &\nWell-being", type: "paper", r: 10, stage: "early",
                     full: "Flexitime Availability, Use, and Employee Well-being",
                     coauthors: "Data Analysis",
                     question: "Does flexibility need to be used to improve well-being, or does access alone suffice?",
                     link: SCHOLAR
                 },
                 {
-                    id: "fwagap", label: "FWA & the\nGender Wage Gap", type: "paper", r: 10,
-                    full: "Flexible Work Arrangements and the Gender Wage Gap",
-                    coauthors: "with Kourtney Koebel - Data Analysis",
+                    id: "pricetostay", label: "A Price to\nStaying?", type: "paper", r: 10, stage: "early",
+                    full: "A Price to Staying? Flexible Work and Organizational Retention",
+                    coauthors: "Data Analysis",
+                    question: "Does flexible work come with hidden costs to the employees it retains?",
+                    link: null
+                },
+                {
+                    id: "zerohour", label: "Zero-Hour\nContracts", type: "paper", r: 10, stage: "early",
+                    full: "Zero-Hour Contracts",
+                    coauthors: "Data Analysis",
+                    question: "How do zero-hour contracts shape employment security and inequality?",
+                    link: null
+                },
+                {
+                    id: "flexindex", label: "Flex\nIndex", type: "paper", r: 10, stage: "early",
+                    full: "Flex Index: Company-Level Data on Flexible Arrangements and Policies",
+                    coauthors: "with Aaron Aujla, Raj Choudhury & Marco Minervini - Data Construction",
+                    question: "How do organizational structures and workforce composition shape the bundles of flexible work arrangements firms offer?",
+                    link: null
+                },
+                {
+                    id: "fwagap", label: "Flexibility &\nGender Equality", type: "paper", r: 10, stage: "under_review",
+                    full: "The Impact of Workplace Flexibility on Gender Equality in the Workplace",
+                    coauthors: "with Kourtney Koebel - Under Review, pre-selected for a special issue of Industrial Relations",
                     question: "How does expanded workplace flexibility relate to the gender wage gap?",
                     link: SCHOLAR
                 },
                 {
-                    id: "gendereval", label: "Evaluating\nFlex Workers", type: "paper", r: 10,
-                    full: "Gender and the Evaluation of Flexible Workers: An Experimental Study",
-                    coauthors: "with Kaisa Snellman - Pre-registration",
+                    id: "gendereval", label: "Gender Bias in\nFlex Attributions", type: "paper", r: 10, stage: "early",
+                    full: "Gender Bias in Flexible Work Attributions: A Conjoint and Survey Experiment",
+                    coauthors: "with Kaisa Snellman - Pilot Experiment",
                     question: "Do managers use gender as a proxy for motivation when evaluating flexible workers?",
                     link: SCHOLAR
                 },
                 {
-                    id: "maternity", label: "Maternity Leave\n& Intersectionality", type: "paper", r: 10,
-                    full: "Maternity Leave and Intersectionality",
-                    coauthors: "with Kaisa Snellman & Pablo Leao - Data Analysis",
-                    question: "What are the career implications of maternity leave?",
+                    id: "maternity", label: "Family-Leave\nPenalties", type: "paper", r: 10, stage: "early",
+                    full: "Gender and Racial Inequalities in Family-Leave Penalties",
+                    coauthors: "with Pablo Leão & Kaisa Snellman - Data Analysis",
+                    question: "How do family-leave penalties vary by gender and race?",
                     link: SCHOLAR
                 },
                 // D.Phil. — published papers link to Scholar; Ch3 not separately published yet
                 {
-                    id: "ch1", label: "Happiness &\nDisplacement", type: "paper", r: 10,
+                    id: "ch1", label: "Happiness &\nDisplacement", type: "paper", r: 10, stage: "published",
                     full: "Understandings of Happiness and Life Satisfaction among Refugees in the UK",
                     coauthors: "Published - Journal of Refugee Studies, 2024",
                     question: "How do refugees conceptualise happiness and life satisfaction?",
                     link: SCHOLAR
                 },
                 {
-                    id: "ch2", label: "Migration Reason\n& Well-being", type: "paper", r: 10,
+                    id: "ch2", label: "Migration Reason\n& Well-being", type: "paper", r: 10, stage: "published",
                     full: "Differences in Migrants' Reason for Migration and Subjective Well-being: Not So Different After All",
                     coauthors: "Published with Carlos Vargas-Silva — Comparative Migration Studies, 2024",
                     question: "Do migrants' well-being trajectories differ by why they migrated?",
                     link: SCHOLAR
                 },
                 {
-                    id: "ch3", label: "Employment &\nMigrant Well-being", type: "paper", r: 10,
+                    id: "ch3", label: "Employment &\nMigrant Well-being", type: "paper", r: 10, stage: "published",
                     full: "Working Your Way to Remain: Subjective Well-Being and Employment of Migrants in the United Kingdom",
-                    coauthors: "Carlos Vargas-Silva - Under Review",
+                    coauthors: "Published with Carlos Vargas-Silva — International Migration, 2026",
                     question: "How does migration reason affect the relation between employment and well-being?",
-                    link: null
+                    link: SCHOLAR
                 },
                 {
-                    id: "ch4", label: "The Place\nof Safety", type: "paper", r: 10,
+                    id: "ch4", label: "The Place\nof Safety", type: "paper", r: 10, stage: "published",
                     full: "The Place of Safety in Refugees' Subjective Well-Being",
                     coauthors: "Published - Refugee Survey Quarterly, 2025",
                     question: "How do refugees think about safety and well-being in destination countries?",
@@ -629,6 +669,19 @@
                 { source: "work",       target: "wellbeing",  isPillarLink: true },
                 { source: "work",       target: "inequality", isPillarLink: true },
                 { source: "wellbeing",  target: "inequality", isPillarLink: true },
+                // JMP — organizational membership as mechanism of career inequality
+                { source: "jmp",        target: "work" },
+                { source: "jmp",        target: "inequality" },
+                // A Price to Staying — organizational retention, hidden well-being cost
+                { source: "pricetostay", target: "work" },
+                { source: "pricetostay", target: "inequality" },
+                { source: "pricetostay", target: "wellbeing" },
+                // Zero-hour contracts — precarious work, inequality
+                { source: "zerohour",   target: "work" },
+                { source: "zerohour",   target: "inequality" },
+                // Flex Index — firm-level data construction underlying the work stream
+                { source: "flexindex",  target: "work" },
+                { source: "flexindex",  target: "inequality" },
                 // MCC — work context, well-being cost
                 { source: "mcc",        target: "work" },
                 { source: "mcc",        target: "wellbeing" },
@@ -680,11 +733,19 @@
             }));
 
             /* ── Colours ── */
+            /* Paper colour signals stage — darker/more saturated the further along; JMP always distinct */
             const PILLAR_COLOR = "#4A90E2";
             const PAPER_COLOR  = "#9FA8DA";
             const PILLAR_LINK  = "#7986CB";
             const PAPER_LINK   = "#dde0ec";
-            function nodeColor(d) { return d.type === "pillar" ? PILLAR_COLOR : PAPER_COLOR; }
+            const STAGE_COLOR = {
+                jmp:           "#8e44ad",  // flagship — distinct hue, not part of the stage gradient
+                published:     "#5C6BC0",  // furthest along — most saturated
+                under_review:  "#8288D6",
+                working_paper: "#9FA8DA",  // default paper colour
+                early:         "#C7CCEB"   // data analysis / construction / pilot — lightest
+            };
+            function nodeColor(d) { return d.type === "pillar" ? PILLAR_COLOR : (STAGE_COLOR[d.stage] || PAPER_COLOR); }
             function linkStroke(l)  { return l.isPillarLink ? PILLAR_LINK : PAPER_LINK; }
             function linkWidth(l)   { return l.isPillarLink ? 2 : 1.3; }
             function linkOpacity(l) { return l.isPillarLink ? 0.45 : 0.6; }
@@ -699,12 +760,6 @@
             const zoomBehavior = d3.zoom().scaleExtent([0.3, 4])
                 .on("zoom", e => zoomLayer.attr("transform", e.transform));
             svg.call(zoomBehavior);
-            // Zoom in on entry so graph fills the box rather than floating in empty space
-            const initScale = Math.min(1.4, width / 520);
-            svg.call(zoomBehavior.transform,
-                d3.zoomIdentity
-                    .translate(cx * (1 - initScale), cy * (1 - initScale) - 40)
-                    .scale(initScale));
 
             /* ── Force simulation ── */
             const simulation = d3.forceSimulation(nodesData)
@@ -717,8 +772,25 @@
                 .force("charge",
                     d3.forceManyBody().strength(d => d.type === "pillar" ? -500 : -130)
                 )
-                .force("center", d3.forceCenter(cx, cy).strength(0.04))
+                .force("x", d3.forceX(cx).strength(0.025))
+                .force("y", d3.forceY(cy).strength(0.09))
                 .force("collide", d3.forceCollide().radius(d => d.r + 28).strength(0.7));
+
+            // Pre-settle synchronously so the initial framing can be fit to where nodes actually land,
+            // rather than to a hand-guessed scale that drifts out of date as nodes are added/removed.
+            for (let i = 0; i < 300; i++) simulation.tick();
+
+            // Fit the settled bounding box into the viewport (wider-than-tall bias comes from the
+            // x/y forces above) so the graph never opens cropped, regardless of node count.
+            const pad = 40;
+            const xs = nodesData.map(d => d.x), ys = nodesData.map(d => d.y);
+            const bx0 = Math.min(...xs) - pad, bx1 = Math.max(...xs) + pad;
+            const by0 = Math.min(...ys) - pad, by1 = Math.max(...ys) + pad;
+            const fitScale = Math.min(1.3, 0.96 / Math.max((bx1 - bx0) / width, (by1 - by0) / height));
+            svg.call(zoomBehavior.transform,
+                d3.zoomIdentity
+                    .translate(width / 2 - fitScale * (bx0 + bx1) / 2, height / 2 - fitScale * (by0 + by1) / 2)
+                    .scale(fitScale));
 
             /* ── Links ── */
             const link = zoomLayer.append("g")
@@ -836,8 +908,8 @@
             node.each(function(d) {
                 const g = d3.select(this);
                 const lines = d.label.split('\n');
-                const fs = d.type === "pillar" ? 11 : 8.5;
-                const fw = d.type === "pillar" ? "600" : "500";
+                const fs = d.type === "pillar" ? 11 : (d.id === "jmp" ? 9.5 : 8.5);
+                const fw = d.type === "pillar" ? "600" : (d.id === "jmp" ? "700" : "500");
                 const lh = fs + 3;
                 const startY = d.r + 14;
                 const txt = g.append("text")
