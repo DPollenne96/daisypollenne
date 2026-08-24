@@ -792,6 +792,19 @@
                     .translate(width / 2 - fitScale * (bx0 + bx1) / 2, height / 2 - fitScale * (by0 + by1) / 2)
                     .scale(fitScale));
 
+            // Stop the physics here — layout and framing are already decided above.
+            // What follows is a pure visual entrance: nudge each node off its own
+            // settled spot, then let it drift the short distance back and freeze —
+            // the graph reads as already-formed but visibly still finding rest,
+            // rather than appearing static from the first frame.
+            simulation.stop();
+            nodesData.forEach(d => {
+                d._restX = d.x;
+                d._restY = d.y;
+                d.x = d._restX + (Math.random() - 0.5) * 150;
+                d.y = d._restY + (Math.random() - 0.5) * 150;
+            });
+
             /* ── Links ── */
             const link = zoomLayer.append("g")
                 .selectAll("line").data(linksData).join("line")
@@ -928,6 +941,8 @@
             });
 
             /* ── Tick ── */
+            /* Drives link/node positions during drag interaction, once the simulation
+               is woken back up — see the drag handlers above. */
             simulation.on("tick", () => {
                 link
                     .attr("x1", d => d.source.x)
@@ -936,6 +951,29 @@
                     .attr("y2", d => d.target.y);
                 node.attr("transform", d => `translate(${d.x ?? 0},${d.y ?? 0})`);
             });
+
+            /* ── Entrance animation: nodes settle the last short distance into place ── */
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+            link
+                .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+
+            node.transition()
+                .duration(1400)
+                .delay((d, i) => i * 18)
+                .ease(d3.easeCubicOut)
+                .tween("settle", function(d) {
+                    const ix = d3.interpolateNumber(d.x, d._restX);
+                    const iy = d3.interpolateNumber(d.y, d._restY);
+                    return t => {
+                        d.x = ix(t);
+                        d.y = iy(t);
+                        d3.select(this).attr("transform", `translate(${d.x},${d.y})`);
+                        link
+                            .attr("x1", l => l.source.x).attr("y1", l => l.source.y)
+                            .attr("x2", l => l.target.x).attr("y2", l => l.target.y);
+                    };
+                });
 
             /* ── Tooltip ── */
             const tooltipEl   = document.getElementById("graph-tooltip");
